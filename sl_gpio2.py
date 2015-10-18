@@ -1,5 +1,5 @@
 #8CH GPIO TOGGLE
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
 PIN_A = 3
 PIN_B = 5
@@ -19,15 +19,15 @@ class SlGpio :
         def __init__ (self) :
             print("init")
             self.CH_MAX = CH_MAX
-            self.GPIO = GPIO
-            self.GPIO.setmode(GPIO.BOARD)
-            global PIN_A, PIN_B, PIN_C, PIN_D, PIN_E, PIN_F, PIN_G, PIN_H
-            self.ch = [PIN_A, PIN_B, PIN_C, PIN_D, PIN_E, PIN_F, PIN_G, PIN_H]
-            self.ch_val = [False, False, False, False, False, False, False, False]
+            # self.GPIO = GPIO
+            # self.GPIO.setmode(GPIO.BOARD)
+            global PIN_A, PIN_B, PIN_C, PIN_D, PIN_E, PIN_F, PIN_G, PIN_H, PIN_I
+            self.ch = [PIN_A, PIN_B, PIN_C, PIN_D, PIN_E, PIN_F, PIN_G, PIN_H, PIN_I]
+            self.ch_val = [False, False, False, False, False, False, False, False, False]
 
             for var in range(CH_MAX):
                 print("The pin {0} was set as OUTPUT".format(self.ch[var]))
-                self.GPIO.setup(self.ch[var],GPIO.OUT)
+                # self.GPIO.setup(self.ch[var],GPIO.OUT)
 
 
             # self.GPIO.setmode(GPIO.BOARD)
@@ -43,7 +43,12 @@ class SlGpio :
 
         def update(self) :
             for var in range(CH_MAX):
-                GPIO.output(self.ch[var],self.ch_val[var])
+                if self.ch_val[var]:
+                    print("O")
+                else:
+                    print("-")
+                # GPIO.output(self.ch[var],self.ch_val[var])
 
     except KeyboardInterrupt :
-    	GPIO.cleanup()
+        pass
+    	# GPIO.cleanup()
