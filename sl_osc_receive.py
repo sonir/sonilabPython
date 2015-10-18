@@ -12,7 +12,7 @@ class SlOscReceive :
 
 	def __init__(self, port, object):
 	#		self.receive_address = '127.0.0.1', 7000 #Mac Adress, Outgoing Port
-		self.receive_address = '127.0.0.1', port #Mac Adress, Outgoing Port
+		self.receive_address = '0.0.0.0', port #Mac Adress, Outgoing Port
 		self.s = OSC.OSCServer(self.receive_address)
 		self.s.addDefaultHandlers()
 		self.obj = object
