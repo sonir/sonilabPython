@@ -44,9 +44,11 @@ class SlGpio :
         def update(self) :
             for var in range(CH_MAX):
                 if self.ch_val[var]:
-                    print("O")
+                    print "O",
                 else:
-                    print("-")
+                    print"-",
+
+            print " "
                 # GPIO.output(self.ch[var],self.ch_val[var])
 
     except KeyboardInterrupt :
