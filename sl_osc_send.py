@@ -16,14 +16,14 @@ class slOscSend:
         print(self.str)
 
 
-    def send (self, adr, val):
-        osc = OSC.OSCClient()
-        self.adr = adr
-        self.val = val
-        self.msg = OSC.OSCMessage()
-        self.msg.setAddress(self.adr)
-        self.msg.append(self.val)
-        osc.sendto(self.msg, self.destination)
+#     def send (self, adr, val):
+#         osc = OSC.OSCClient()
+#         self.adr = adr
+#         self.val = val
+#         self.msg = OSC.OSCMessage()
+#         self.msg.setAddress(self.adr)
+#         self.msg.append(self.val)
+#         osc.sendto(self.msg, self.destination)
 
     def send2arg (self, adr, val1, val2):
         osc = OSC.OSCClient()
@@ -36,7 +36,7 @@ class slOscSend:
         self.msg.append(self.val2)
         osc.sendto(self.msg, self.destination)
 
-    def sendMulti (self, adr, *args):
+    def send (self, adr, *args):
         osc = OSC.OSCClient()
         self.adr = adr
         self.msg = OSC.OSCMessage()
