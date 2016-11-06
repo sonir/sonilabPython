@@ -31,7 +31,7 @@ class Lowpass :
         return val
 
     def min_check(self, val):
-        if val <= self.queue:
+        if val <= self.min_val:
             return 0
         else:
             return val
