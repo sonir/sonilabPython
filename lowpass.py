@@ -16,7 +16,7 @@ class Lowpass :
         self.update(val)
         # self.print_all()
         self.ans = self.calc_ave()
-        # self.ans = self.min_check(self.ans)
+        self.ans = self.min_check(self.ans)
         return self.ans
 
     def update(self, val):
