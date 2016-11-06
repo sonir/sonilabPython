@@ -1,3 +1,4 @@
+#deque is faster more than list
 from collections import deque
 
 class Lowpass :
