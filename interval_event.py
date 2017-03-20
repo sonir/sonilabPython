@@ -28,6 +28,7 @@ class IntervalEvent(threading.Thread):
                     if self.interrupt == True:
                         self.interrupt = False
                         self.doing = False
+                        event.bang(self.end_event)
                         break
                     #bang event
                     event.bang(self.event_name)
