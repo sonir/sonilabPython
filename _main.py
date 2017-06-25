@@ -1,4 +1,8 @@
-from sonilab import sl_metro, sl_osc_send, osc_receive, event
+# if you want to use this library from outside of sonilab folder, should import as follows,
+# from sonilab import sl_metro, sl_osc_send, osc_receive, event
+# enjoy !!
+
+import sl_metro, sl_osc_send, osc_receive, event
 
 metro = sl_metro.Metro(1.0)
 sender = sl_osc_send.slOscSend("127.0.0.1" , 57137)
