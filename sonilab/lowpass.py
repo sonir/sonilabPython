@@ -7,7 +7,7 @@ class Lowpass :
         self.len = length
         self.min_val = 0.005
         self.queue = deque([])
-        self.ans = 0.0
+        self.current = 0.0
 
         # make list with 0
         for var in range(0,self.len):
@@ -16,9 +16,9 @@ class Lowpass :
     def run(self,val):
         self.update(val)
         # self.print_all()
-        self.ans = self.calc_ave()
-        self.ans = self.min_check(self.ans)
-        return self.ans
+        self.current = self.calc_ave()
+        self.current = self.min_check(self.current)
+        return self.current
 
     def update(self, val):
         self.queue.popleft()
@@ -40,3 +40,8 @@ class Lowpass :
     def print_all(self):
         for var in self.queue:
             print var
+
+    def reset(self):
+        for var in self.queue:
+            var = 0.0
+
