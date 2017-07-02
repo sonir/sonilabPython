@@ -6,7 +6,7 @@ class Lowpass :
     def __init__ (self, length):
         self.len = length
         self.min_val = 0.005
-        self.queue = deque([])
+        self.queue = deque([] , maxlen=length)
         self.current = 0.0
 
         # make list with 0
@@ -21,7 +21,7 @@ class Lowpass :
         return self.current
 
     def update(self, val):
-        self.queue.popleft()
+        # self.queue.popleft()
         self.queue.append(val)
 
     def calc_ave(self):
@@ -42,6 +42,7 @@ class Lowpass :
             print var
 
     def reset(self):
-        for var in self.queue:
-            var = 0.0
-
+        self.queue.clear()
+        current = 0.0
+        for var in range(0,self.len):
+            self.queue.append(0.0)
