@@ -1,11 +1,12 @@
 import time, sl_metro,delay
+import threading
 import timer_gate as tg
 import event
 
-metro = sl_metro.Metro(0.1)
+metro = sl_metro.Metro(1.0)
 
-FOO_GATE_TIME = 2.0
-BAR_GATE_TIME = 1.0
+FOO_GATE_TIME = 0.5
+BAR_GATE_TIME = 0.2
 
 invoking_count = 0
 invoking_count2 = 0
@@ -67,11 +68,14 @@ print "bar() gate opens every" , BAR_GATE_TIME, "ms."
 time.sleep(2.0)
 
 #set test1 end timer
-delay.bang(10.0, "/test_end")
+delay.bang(3600.0, "/test_end")
 #execute test 1
 while do_test:
     tg.bang("/foo" , 137)
     tg.bang("/bar" , 138)
+    if metro.update():
+        print "+++"
+        print threading.enumerate()
 
 print "--------------"
 print "start test2..."
