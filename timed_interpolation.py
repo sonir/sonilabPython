@@ -18,7 +18,7 @@ class TimedInterpolation :
         self.end_flg = False
 
 
-    def set(self, st, ed, sec):
+    def manual_set(self, st, ed, sec):
         self.st = st
         self.ed = ed
         self.duration = sec
@@ -28,6 +28,8 @@ class TimedInterpolation :
 
         self.end_flg = False
 
+    def set(self, val, sec):
+        self.manual_set(self.now, val, sec)
 
 
     def update(self):
