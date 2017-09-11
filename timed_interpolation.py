@@ -34,7 +34,7 @@ class TimedInterpolation :
 
     def update(self):
 
-        if self.end_flg == True:
+        if self.end_flg == True or self.duration == 0.0:
             return self.ed
 
         self.time_now = time.time()
