@@ -6,7 +6,7 @@ class TimedInterpolation :
         self.st = 0.0
         self.ed = 0.0
         self.diff = 0.0
-        self.now = 0.0
+        self.current = 0.0
 
         self.duration = 0.0
         self.time_st = 0.0
@@ -29,7 +29,7 @@ class TimedInterpolation :
         self.end_flg = False
 
     def set(self, val, sec):
-        self.manual_set(self.now, val, sec)
+        self.manual_set(self.current, val, sec)
 
 
     def update(self):
@@ -39,8 +39,8 @@ class TimedInterpolation :
 
         self.time_now = time.time()
         self.ellapse = self.time_now - self.time_st
-        self.now = self.st + ( self.diff * ( self.ellapse / self.duration ) )
+        self.current = self.st + ( self.diff * ( self.ellapse / self.duration ) )
         if self.ellapse > self.duration:
-            self.now = self.ed
+            self.current = self.ed
             self.end_flg = True
-        return self.now
+        return self.current
