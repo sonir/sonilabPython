@@ -2,26 +2,20 @@ import event_cue, event
 
 #Event cue uses deque. It is thread safe. You can control event with it.
 
-def first(args):
-    print "first()" , args[0], "," , args[1], ",", args[2]
+def first(val1, str1, val2):
+    print val1, str1, val2
 event.add("/first",first)
 
-def second(str):
-    print str
+def second(str1):
+    print str1
 event.add("/second" , second)
 
 evcue = event_cue.EventCue()
-args = []
-args.append(1)
-args.append('ehehe')
-args.append(0.2)
-evcue.add("/first", args)
+evcue.add("/first", 1, 'ehehe', 0.2)
 
 
 mystr = "ahaha!"
-args2=[]
-args2.append(mystr)
-evcue.add("/second", args2)
+evcue.add("/second", mystr)
 
 evcue.dump()
 print ("OK")
