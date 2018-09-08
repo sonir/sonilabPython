@@ -1,4 +1,7 @@
-import OSC
+# for latest https://github.com/ptone/pyosc
+from OSC import OSCClient, OSCMessage
+# for old version (0.3.5) https://pypi.org/project/pyOSC/#files
+# import OSC
 
 class slOscSend:
     """ Osc Sender """
@@ -7,8 +10,10 @@ class slOscSend:
         self.ip_adr = adr
         self.port = port
         self.destination = (self.ip_adr, self.port)
+#         self.client = OSC.OSCClient()
+        self.client = OSCClient()
+        self.client.connect(self.destination)
         self.adr = "/unset"
-        self.val = 137
         self.str = 'IP: '
         self.str += self.ip_adr
         self.str += ' PORT: '
@@ -16,31 +21,16 @@ class slOscSend:
         print(self.str)
 
 
-#     def send (self, adr, val):
-#         osc = OSC.OSCClient()
-#         self.adr = adr
-#         self.val = val
-#         self.msg = OSC.OSCMessage()
-#         self.msg.setAddress(self.adr)
-#         self.msg.append(self.val)
-#         osc.sendto(self.msg, self.destination)
-
-    def send2arg (self, adr, val1, val2):
-        osc = OSC.OSCClient()
-        self.adr = adr
-        self.val1 = val1
-        self.val2 = val2
-        self.msg = OSC.OSCMessage()
-        self.msg.setAddress(self.adr)
-        self.msg.append(self.val1)
-        self.msg.append(self.val2)
-        osc.sendto(self.msg, self.destination)
 
     def send (self, adr, *args):
-        osc = OSC.OSCClient()
         self.adr = adr
-        self.msg = OSC.OSCMessage()
-        self.msg.setAddress(self.adr)
+#         msg = OSC.OSCMessage()
+        msg = OSCMessage()
+        msg.setAddress(self.adr)
         for i in args:
-            self.msg.append(i)
-        osc.sendto(self.msg, self.destination)
+            msg.append(i)
+        try:
+            self.client.send(msg)
+        except:
+          print ">>> ERR :: Could not connect to ", self.ip_adr, ":", self.port
+#          osc.sendto(self.msg, self.destination)
